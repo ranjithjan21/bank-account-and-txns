@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "7d3f86dc-5f17-44a8-b559-6cb8bd37f9e4",
+		"name": "bank-account-query",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get all accounts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/v1/bank-query/accounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"v1",
+						"bank-query",
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get accounts in red",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/v1/bank-query/accounts/negative-balance",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"v1",
+						"bank-query",
+						"accounts",
+						"negative-balance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get transactions from date",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/v1/bank-query/account/transactions/9994364498/2023-03-21T14:30:00",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"v1",
+						"bank-query",
+						"account",
+						"transactions",
+						"9994364498",
+						"2023-03-21T14:30:00"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get account info",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/v1/bank-query/accounts/9994364498",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"v1",
+						"bank-query",
+						"accounts",
+						"9994364498"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

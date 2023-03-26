@@ -1,3 +1,15 @@
+target/
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Spring Boot generated files
+logs/
+*.log
+
 # Compiled class file
 *.class
 

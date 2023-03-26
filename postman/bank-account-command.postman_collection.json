@@ -1,0 +1,199 @@
+{
+	"info": {
+		"_postman_id": "fa1176a7-7688-4b5b-b1c6-425bf9c03267",
+		"name": "bank-account-command",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "open account",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"mobile\" : \"9994364498\",\n    \"initialBalance\" : 10.00,\n    \"creditLine\" : 15.00\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/bank-command/open-account",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"bank-command",
+						"open-account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "credit transaction",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var current_timestamp = new Date();",
+							"postman.setEnvironmentVariable(\"current_timestamp\", current_timestamp.toISOString());",
+							"postman.setEnvironmentVariable(\"transactionId\", _.random(10000000000000, 99999999999999));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"accountId\" : \"9994364498\",\n    \"transactionId\" : \"{{transactionId}}\",\n    \"amount\" : 10.00,\n    \"transactionDate\" : \"{{current_timestamp}}\",\n    \"transactionType\": \"CREDIT\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/bank-command/account/transaction",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"bank-command",
+						"account",
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "debit transaction",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var current_timestamp = new Date();",
+							"postman.setEnvironmentVariable(\"current_timestamp\", current_timestamp.toISOString());",
+							"postman.setEnvironmentVariable(\"transactionId\", _.random(10000000000000, 99999999999999));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"accountId\" : \"9994364498\",\n    \"transactionId\" : \"{{transactionId}}\",\n    \"amount\" : 12.00,\n    \"transactionDate\" : \"{{current_timestamp}}\",\n    \"transactionType\": \"DEBIT\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/bank-command/account/transaction",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"bank-command",
+						"account",
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check overdraft",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"accountId\" : \"9994364498\",\n    \"amount\" : \"20\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/bank-command/account/check-overdraft",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"bank-command",
+						"account",
+						"check-overdraft"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get events",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/bank-command/events/9994364498",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"bank-command",
+						"events",
+						"9994364498"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
